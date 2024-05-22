@@ -1,0 +1,6 @@
+services:
+
+ capstonepr:
+    image: cap-proj
+    ports:
+    - "80:80"
