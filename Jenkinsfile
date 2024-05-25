@@ -1,6 +1,10 @@
 pipeline {
     agent any
-    stages{
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }   
+     stages{
         stage("Build") {
             steps {
                 script{
@@ -12,6 +16,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 script{
+		    sh 'echo "Deploying from branch $GIT_BRANCH " ' 
                     sh 'chmod +x deploy.sh'
                     sh './deploy.sh'
                 }
